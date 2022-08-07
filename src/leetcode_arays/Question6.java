@@ -8,55 +8,46 @@ public class Question6 {
 Increment the large integer by one and return the resulting array of digits.
      */
 
-    public static int[] plus(int[] digits){
-
-        String num = "";
-        for (int digit : digits) {
-            num = num + digit;
+    public static void printArray(int[] arr) {
+        System.out.println();
+        for (int j : arr) {
+            System.out.print(j + " ");
         }
-        int value = Integer.parseInt(num);
-        System.out.println(value);
-        value++;
-        String finaLs = Integer.toString(value);
-        System.out.println(finaLs);
-        int[] ans = new int[finaLs.length()];
-        for (int i = 0; i < ans.length; i++){
-            ans[i] = Integer.parseInt(String.valueOf(finaLs.charAt(i)));
-        }
-        return ans;
+        System.out.println();
     }
-    public static int[] plusOne(int[] digits) {
-        int val = digits[digits.length -1 ];
 
-        if (val == 9){
-            int[] ans = new int[digits.length + 1];
-            System.arraycopy(digits, 0, ans, 0, digits.length);
-            for (int i = digits.length - 1; i >= 0; i--){
-                if (ans[i] == 9 && i != 0){
-                    ans[i] = 0;
-                } else {
-                    if (ans[i] == 9 && i == 0){
-                        ans[i] = 1;
-                    } else {
-                        ans[i] += 1;
-                    }
+    public static int[] plusOne(int[] arr) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] == 9) {
+                arr[i] = 0;
+                if (i == 0) {
+                    int[] newArray = new int[arr.length + 1];
+                    newArray[0] = 1;
+                    System.arraycopy(arr, 0, newArray, 1, newArray.length - 1);
+                    return newArray;
                 }
+            } else {
+                arr[i]++;
+                break;
             }
-            ans[digits.length] = 0;
-            for (int e:ans
-                 ) {
-                System.out.print(e + " ");
-            }
-            return ans;
-        } else {
-            val++;
-            digits[digits.length -1 ] = val;
-            return digits;
         }
+        return arr;
     }
 
     public static void main(String[] args) {
-        int[] digits = {9,8,7,6,5,4,3,2,1,0};
-        plus(digits);
+        int[] digits = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        int[] digits1 = {9, 9, 9, 9};
+        int[] digits2 = {8, 9, 9, 9};
+        int[] digits3 = {9, 8, 9};
+        int[] digits4 = {1, 2, 3};
+        int[] digits5 = {0};
+        int[] digits6 = {8, 8, 5, 0, 5, 1, 9, 7};
+        printArray(plusOne(digits));
+        printArray(plusOne(digits1));
+        printArray(plusOne(digits2));
+        printArray(plusOne(digits3));
+        printArray(plusOne(digits4));
+        printArray(plusOne(digits5));
+        printArray(plusOne(digits6));
     }
 }
