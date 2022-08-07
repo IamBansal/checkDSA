@@ -1,6 +1,6 @@
 package leetcode_arays;
 
-public class ArrayQuestions {
+public class Question1 {
 
     /*
     You are given a non-negative integer array nums. In one operation, you must:
