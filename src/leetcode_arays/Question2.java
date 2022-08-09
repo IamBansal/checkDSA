@@ -11,12 +11,6 @@ public class Question2 {
 
      */
 
-//    public static int maximumGroups(int[] grades){
-//        if (grades.length < 3){
-//            return 0;
-//        }
-//
-//    }
 
     public static int[] twoSum(int[] nums, int target) {
         int i;
