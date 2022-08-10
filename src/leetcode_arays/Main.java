@@ -1,3 +1,5 @@
+package leetcode_arays;
+
 import java.util.Scanner;
 
 public class Main {
