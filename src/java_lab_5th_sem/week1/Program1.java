@@ -1,4 +1,4 @@
-package java_lab_5th_sem;
+package java_lab_5th_sem.week1;
 
 public class Program1 {
 
