@@ -251,7 +251,7 @@ public class SortingAlgo {
         ArrayList<Float>[] buckets = new ArrayList[n];
 
         for (int i = 0; i < n; i++) {
-            buckets[i] = new ArrayList<Float>();
+            buckets[i] = new ArrayList<>();
         }
 
         for (int i = 0; i < n; i++) {
@@ -270,7 +270,6 @@ public class SortingAlgo {
             }
         }
     }
-
 
     public static void printArray(int[] arr) {
         for (int j : arr) System.out.print(j + " ");
