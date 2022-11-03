@@ -1,6 +1,6 @@
 package java_lab_5th_sem.week7;
 
-class MyThread implements Runnable {
+class MyThread extends Thread {
     String name;
     Thread t;
     MyThread (String thread){
