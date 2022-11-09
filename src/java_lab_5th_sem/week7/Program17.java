@@ -37,6 +37,4 @@ public class Program17 {
         }
         System.out.println("Main thread exiting.");
     }
-
-
 }

@@ -483,4 +483,3 @@ public class Program24 {
     }
 
 }
-

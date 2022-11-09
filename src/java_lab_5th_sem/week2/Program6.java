@@ -76,6 +76,7 @@ public class Program6 {
 
     public static void main(String[] args) {
 
+        //Stack operations
         Stack stack = new Stack();
         System.out.println("Stack : ");
         stack.push(34);
@@ -84,6 +85,7 @@ public class Program6 {
         stack.pop();
         stack.print();
 
+        //Queue operations
         Queue queue = new Queue();
         System.out.println("\nQueue : ");
         queue.push(34);
@@ -93,6 +95,4 @@ public class Program6 {
         queue.print();
 
     }
-
-
 }

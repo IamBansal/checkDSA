@@ -28,5 +28,4 @@ public class Program7 {
         int[][] arr2 = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
         multiplyMatrix(arr1, arr2);
     }
-
 }

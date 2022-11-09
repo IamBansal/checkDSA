@@ -1,6 +1,5 @@
 package java_lab_5th_sem.week5;
 
-
 //Week 6 - Program 14 here
 //Interface
 interface Drawable{

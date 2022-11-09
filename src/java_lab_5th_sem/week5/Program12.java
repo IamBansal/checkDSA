@@ -14,7 +14,7 @@ class Dog extends Animal {
 
     //Use of super keyword
     void printColor() {
-        System.out.println("Dog's color : " + color);        //prints color of Dog class
+        System.out.println("Dog's color : " + color);           //prints color of Dog class
         System.out.println("Animal's color : " + super.color);  //prints color of Animal class
     }
 }
@@ -25,7 +25,6 @@ class Cat extends Animal {
     void legs() {
         System.out.println("Cat has 4 legs.");
     }
-
 }
 
 public class Program12 {

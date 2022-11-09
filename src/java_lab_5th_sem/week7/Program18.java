@@ -13,23 +13,20 @@ public class Program18 {
             int value = 0;
             while (true) {
                 synchronized (this) {
-                    // producer thread waits while list
-                    // is full
+                    //producer thread waits while list is full
                     while (list.size() == capacity)
                         wait();
 
                     System.out.println("Producer produced:"
                             + value);
 
-                    // to insert the jobs in the list
+                    //to insert the jobs in the list
                     list.add(value++);
 
-                    // notifies the consumer thread that
-                    // now it can start consuming
+                    //notifies the consumer thread that now it can start consuming
                     notify();
 
-                    // makes the working of program easier
-                    // to  understand
+                    //makes the working of program easier to  understand
                     Thread.sleep(1000);
                 }
             }
@@ -39,31 +36,26 @@ public class Program18 {
         public void consume() throws InterruptedException {
             while (true) {
                 synchronized (this) {
-                    // consumer thread waits while list
-                    // is empty
+                    //consumer thread waits while list is empty
                     while (list.size() == 0)
                         wait();
 
-                    // to retrieve the first job in the list
+                    //to retrieve the first job in the list
                     int val = list.removeFirst();
 
-                    System.out.println("Consumer consumed:"
-                            + val);
+                    System.out.println("Consumer consumed:" + val);
 
-                    // Wake up producer thread
+                    //Wake up producer thread
                     notify();
 
-                    // and sleep
                     Thread.sleep(1000);
                 }
             }
         }
     }
 
-    public static void main(String[] args)
-            throws InterruptedException {
-        // Object of a class that has both produce()
-        // and consume() methods
+    public static void main(String[] args) throws InterruptedException {
+
         final PC pc = new PC();
 
         // Create producer thread
@@ -92,6 +84,4 @@ public class Program18 {
         t1.join();
         t2.join();
     }
-
 }
-
