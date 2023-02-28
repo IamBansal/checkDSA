@@ -1,6 +1,5 @@
-package recursion;
+package leetcode_recursion;
 
-import javax.sound.midi.Soundbank;
 import java.util.Vector;
 
 public class Question1 {

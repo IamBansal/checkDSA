@@ -1,7 +1,4 @@
-package recursion;
-
-import java.util.List;
-import java.util.Vector;
+package leetcode_recursion;
 
 public class Question2 {
 

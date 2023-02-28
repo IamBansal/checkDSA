@@ -1,4 +1,4 @@
-package recursion;
+package leetcode_recursion;
 
 public class Question3 {
 
