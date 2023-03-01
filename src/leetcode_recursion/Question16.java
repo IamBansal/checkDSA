@@ -23,34 +23,33 @@ public class Question16 {
     Else, the last friend in the circle wins the game.
     Given the number of friends, n, and an integer k, return the winner of the game
      */
-//
-//    public static int findTheWinner(int n, int k) {
-//
-//        LinkedList<Integer> check = new LinkedList<>();
-//        int i = 1;
-//        while (i <= n){
-//            check.add(i);
-//            i++;
-//        }
-//
-//        return helper(k, k - 1, check).get(0);
-//    }
-//
-//    private static LinkedList<Integer> helper(int k, int index, LinkedList<Integer> check) {
-//
-//        if (check.size() == 1){
-//            return check;
-//        }
-//
-//        check.remove(index);
-//        int newIndex = ((index + k - 1) % check.size()) ;
-//        return helper(k, newIndex, check);
-//
-//    }
 
+    public static int findTheWinner(int n, int k) {
+
+        LinkedList<Integer> check = new LinkedList<>();
+        int i = 1;
+        while (i <= n){
+            check.add(i);
+            i++;
+        }
+
+        return helper(k, k - 1, check).get(0);
+    }
+
+    private static LinkedList<Integer> helper(int k, int index, LinkedList<Integer> check) {
+
+        if (check.size() == 1){
+            return check;
+        }
+
+        check.remove(index);
+        int newIndex = ((index + k - 1) % check.size()) ;
+        return helper(k, newIndex, check);
+
+    }
 
     //Better solution
-    public static int findTheWinner(int n, int k) {
+    public static int findTheWinnerBetter(int n, int k) {
         return solve(n, k) + 1;
     }
 
@@ -62,5 +61,7 @@ public class Question16 {
     public static void main(String[] args) {
         System.out.println(findTheWinner(5, 2));
         System.out.println(findTheWinner(6, 5));
+        System.out.println(findTheWinnerBetter(5, 2));
+        System.out.println(findTheWinnerBetter(6, 5));
     }
 }
