@@ -13,25 +13,6 @@ public class Question14 {
     you may move to either index i or index i + 1 on the next row.
      */
 
-    public static int minimumTotal(List<List<Integer>> triangle) {
-
-        if (triangle.size() == 1) return triangle.get(0).get(0);
-        int min = (int) 1e7;
-
-        return helper(triangle, triangle.size() - 1, min, triangle.size() - 1, triangle.size() - 2);
-
-    }
-
-    private static int helper(List<List<Integer>> triangle, int row, int min, int column, int prevColumn) {
-
-        if (row <= 0) return triangle.get(0).get(0);
-        if (column == 0) prevColumn = 0;
-        for (int i = prevColumn; i <= column; i++) {
-            min = Math.min(min, triangle.get(row).get(i) + helper(triangle, row - 1, min, i, i - 1));
-        }
-        return min;
-    }
-
     public static int minimumTotalBetter(List<List<Integer>> triangle) {
         int[] A = new int[triangle.size() + 1];
         for (int i = triangle.size() - 1; i >= 0; i--) {
@@ -40,6 +21,37 @@ public class Question14 {
             }
         }
         return A[0];
+    }
+
+    //Memoized solution
+    public static int minimumTotal(List<List<Integer>> triangle) {
+
+        int n = triangle.size();
+        int[][] array = new int[n][n];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                array[i][j] = (int) 1e8;
+            }
+        }
+        array[0][0] = triangle.get(0).get(0);
+
+        int min = (int) 1e7;
+        for (int i = 0; i < n; i++) {
+            min = Math.min(min, checkHelper(triangle, n - 1, i, array));
+        }
+        return min;
+    }
+
+    private static int checkHelper(List<List<Integer>> triangle, int row, int column, int[][] array) {
+
+        if (row == 0) return array[0][0];
+        if (column < 0 || column > row) return (int) 1e7;
+
+        if (array[row][column] != (int) 1e8) return array[row][column];
+        else
+            array[row][column] = triangle.get(row).get(column) + Math.min(checkHelper(triangle, row - 1, column, array), checkHelper(triangle, row - 1, column - 1, array));
+        return array[row][column];
+
     }
 
 
@@ -66,6 +78,29 @@ public class Question14 {
         finaList.add(row2);
         finaList.add(row3);
         finaList.add(row4);
+
+//        List<Integer> row1 = new ArrayList<>();
+//        row1.add(-1);
+//        List<Integer> row2 = new ArrayList<>();
+//        row2.add(2);
+//        row2.add(3);
+//
+//        List<Integer> row3 = new ArrayList<>();
+//        row3.add(1);
+//        row3.add(-1);
+//        row3.add(-3);
+//
+//        List<Integer> row4 = new ArrayList<>();
+//        row4.add(4);
+//        row4.add(1);
+//        row4.add(8);
+//        row4.add(3);
+//
+//        List<List<Integer>> finaList = new ArrayList<>();
+//        finaList.add(row1);
+//        finaList.add(row2);
+//        finaList.add(row3);
+////        finaList.add(row4);
 
         System.out.println(minimumTotal(finaList));
         System.out.println(minimumTotalBetter(finaList));
