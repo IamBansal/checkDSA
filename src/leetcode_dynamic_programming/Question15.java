@@ -19,34 +19,34 @@ public class Question15 {
 
      */
 
-    public static int cherryPickup(int[][] grid) {
-        int n = grid.length;
-        if (n == 1) return grid[0][0];
-
-        if (haveValidPath(grid, n - 1, n - 1))
-            return helper(grid, n - 1, n - 1, 0) + helper(grid, n - 1, n - 1, 0);
-        else return 0;
-    }
-
-    private static boolean haveValidPath(int[][] grid, int row, int column) {
-        if (row == 0 && column == 0) return true;
-        if (row < 0 || column < 0) return false;
-        if (grid[row][column] == -1) return false;
-
-        return haveValidPath(grid, row, column - 1) || haveValidPath(grid, row - 1, column);
-    }
-
-    private static int helper(int[][] grid, int row, int column, int val) {
-
-        if (row == 0 && column == 0) return grid[0][0];
-        if (row < 0 || column < 0) return 0;
-        if (grid[row][column] == -1) return 0;
-
-        val = grid[row][column] + Math.max(helper(grid, row, column - 1, val), helper(grid, row - 1, column, val));
-        grid[row][column] = 0;
-//        System.out.println(val + " at " + row + ", " + column);
-        return val;
-    }
+//    public static int cherryPickup(int[][] grid) {
+//        int n = grid.length;
+//        if (n == 1) return grid[0][0];
+//
+//        if (haveValidPath(grid, n - 1, n - 1))
+//            return helper(grid, n - 1, n - 1, 0) + helper(grid, n - 1, n - 1, 0);
+//        else return 0;
+//    }
+//
+//    private static boolean haveValidPath(int[][] grid, int row, int column) {
+//        if (row == 0 && column == 0) return true;
+//        if (row < 0 || column < 0) return false;
+//        if (grid[row][column] == -1) return false;
+//
+//        return haveValidPath(grid, row, column - 1) || haveValidPath(grid, row - 1, column);
+//    }
+//
+//    private static int helper(int[][] grid, int row, int column, int val) {
+//
+//        if (row == 0 && column == 0) return grid[0][0];
+//        if (row < 0 || column < 0) return 0;
+//        if (grid[row][column] == -1) return 0;
+//
+//        val = grid[row][column] + Math.max(helper(grid, row, column - 1, val), helper(grid, row - 1, column, val));
+//        grid[row][column] = 0;
+////        System.out.println(val + " at " + row + ", " + column);
+//        return val;
+//    }
 
 
     //Memoized solution
@@ -79,9 +79,18 @@ public class Question15 {
         else cherries += grid[r1][c1] + grid[r2][c2];
 
 
+        //Two persons - both at (0, 0) - kind of cherry pickup II problem
+
+        //So both can move right, right
         int f1 = path(r1, c1 + 1, c2 + 1, grid, dp);
+
+        //One can move right, down
         int f2 = path(r1, c1 + 1, c2, grid, dp);
+
+        //One can move right, down
         int f3 = path(r1 + 1, c1, c2 + 1, grid, dp);
+
+        //Both can move down
         int f4 = path(r1 + 1, c1, c2, grid, dp);
 
         cherries += Math.max(f1, Math.max(f2, Math.max(f3, f4)));
