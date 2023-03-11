@@ -16,7 +16,7 @@ public class Question24 {
 
      */
 
-        public static int change(int amount, int[] coins) {
+    public static int change(int amount, int[] coins) {
 
         int[][] dp = new int[coins.length][amount + 1];
         for (int[] arr : dp) {

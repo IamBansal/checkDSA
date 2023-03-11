@@ -42,7 +42,7 @@ public class Question23 {
 
         if (dp[index][targetLeft] != -1) return  dp[index][targetLeft];
 
-        if (nums[index] > targetLeft)  dp[index][targetLeft] = helper(nums, index - 1, targetLeft, dp);
+        if (nums[index] > targetLeft) dp[index][targetLeft] = helper(nums, index - 1, targetLeft, dp);
         else dp[index][targetLeft] = helper(nums, index - 1, targetLeft - nums[index], dp) + helper(nums, index - 1, targetLeft, dp);
 
         return dp[index][targetLeft];
