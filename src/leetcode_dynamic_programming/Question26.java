@@ -14,6 +14,9 @@ public class Question26 {
     For example, "ace" is a subsequence of "abcde".
     A common subsequence of two strings is a subsequence that is common to both strings.
 
+   SUBSEQUENCE - Is not continuous, but maintains order.
+   SUBSTRING - Is continuous also.\
+
      */
 
     //Memoized Solution
@@ -47,13 +50,43 @@ public class Question26 {
         return prev[text2.length()];
     }
 
+    //Space optimised Tabulated solution - substring
+    public static int longestCommonSubstring(String text1, String text2){
+        int[] prev = new int[text2.length() + 1];
+        int[] curr = new int[text2.length() + 1];
+        Arrays.fill(prev, 0);
+
+        for (int i = 1; i <= text1.length(); i++) {
+            for (int j = 1; j < prev.length; j++) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) curr[j] = 1 + prev[j - 1];
+                else curr[j] = 0;
+            }
+            System.arraycopy(curr, 0, prev, 0, prev.length);
+        }
+        return prev[text2.length()];
+    }
+
     public static void main(String[] args) {
+
+        //For longest common subsequence
         System.out.println(longestCommonSubsequence("abcde", "ace"));
         System.out.println(longestCommonSubsequence("abc", "abc"));
         System.out.println(longestCommonSubsequence("abc", "def"));
+
+        System.out.println();
+
         System.out.println(longestCommonSubsequenceBetter("abcde", "ace"));
         System.out.println(longestCommonSubsequenceBetter("abc", "abc"));
         System.out.println(longestCommonSubsequenceBetter("abc", "def"));
         System.out.println(longestCommonSubsequenceBetter("abcba", "abcbcba"));
+
+        System.out.println();
+
+        //For longest common substring
+        System.out.println(longestCommonSubstring("abcde", "ace"));
+        System.out.println(longestCommonSubstring("abc", "abc"));
+        System.out.println(longestCommonSubstring("abc", "def"));
+        System.out.println(longestCommonSubstring("abcba", "abcbcba"));
+
     }
 }
