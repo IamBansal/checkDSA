@@ -50,20 +50,52 @@ public class Question26 {
         return prev[text2.length()];
     }
 
+    //Print Longest Common Subsequence
+    public static String printLongestCommonSubsequence(String text1, String text2) {
+        int[][] dp = new int[text1.length() + 1][text2.length() + 1];
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
+                if (i == 0 || j == 0) dp[i][j] = 0;
+            }
+        }
+
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) dp[i][j] = 1 + dp[i - 1][j - 1];
+                else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+
+        int i = text1.length(), j = text2.length();
+        StringBuilder str = new StringBuilder();
+
+        while (i > 0 && j > 0) {
+            if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                str.append(text1.charAt(i - 1));
+                i--;
+                j--;
+            } else if (dp[i - 1][j] > dp[i][j - 1]) i--;
+            else j--;
+        }
+        return str.reverse().toString();
+    }
+
     //Space optimised Tabulated solution - substring
-    public static int longestCommonSubstring(String text1, String text2){
+    public static int longestCommonSubstring(String text1, String text2) {
         int[] prev = new int[text2.length() + 1];
         int[] curr = new int[text2.length() + 1];
         Arrays.fill(prev, 0);
 
+        int max = 0;
         for (int i = 1; i <= text1.length(); i++) {
             for (int j = 1; j < prev.length; j++) {
                 if (text1.charAt(i - 1) == text2.charAt(j - 1)) curr[j] = 1 + prev[j - 1];
                 else curr[j] = 0;
+                max = Math.max(max, curr[j]);
             }
             System.arraycopy(curr, 0, prev, 0, prev.length);
         }
-        return prev[text2.length()];
+        return max;
     }
 
     public static void main(String[] args) {
@@ -87,6 +119,14 @@ public class Question26 {
         System.out.println(longestCommonSubstring("abc", "abc"));
         System.out.println(longestCommonSubstring("abc", "def"));
         System.out.println(longestCommonSubstring("abcba", "abcbcba"));
+        System.out.println(longestCommonSubstring("abcd", "abzd"));
+
+        //Print Longest Common Subsequence
+        System.out.println(printLongestCommonSubsequence("abcde", "ace"));
+        System.out.println(printLongestCommonSubsequence("abc", "abc"));
+        System.out.println(printLongestCommonSubsequence("abc", "def"));
+        System.out.println(printLongestCommonSubsequence("abcba", "abcbcba"));
+        System.out.println(printLongestCommonSubsequence("abcd", "abzd"));
 
     }
 }
