@@ -52,6 +52,8 @@ public class Question26 {
 
     //Print Longest Common Subsequence
     public static String printLongestCommonSubsequence(String text1, String text2) {
+
+        //Generating matrix of LCS
         int[][] dp = new int[text1.length() + 1][text2.length() + 1];
         for (int i = 0; i < dp.length; i++) {
             for (int j = 0; j < dp[0].length; j++) {
@@ -66,6 +68,8 @@ public class Question26 {
             }
         }
 
+
+        //Printing code
         int i = text1.length(), j = text2.length();
         StringBuilder str = new StringBuilder();
 
