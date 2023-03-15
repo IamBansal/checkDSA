@@ -15,7 +15,7 @@ public class Question26 {
     A common subsequence of two strings is a subsequence that is common to both strings.
 
    SUBSEQUENCE - Is not continuous, but maintains order.
-   SUBSTRING - Is continuous also.\
+   SUBSTRING - Is continuous also.
 
      */
 
@@ -67,7 +67,6 @@ public class Question26 {
                 else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
-
 
         //Printing code
         int i = text1.length(), j = text2.length();
