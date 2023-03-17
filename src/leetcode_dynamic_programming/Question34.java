@@ -54,6 +54,7 @@ public class Question34 {
     }
 
     //Space optimised solution -> 1d array optimised (only one array used)
+    // in previous question we used two arrays for that.
     public static int numDistinctBest(String s, String t) {
         int[] dp = new int[t.length() + 1];
         Arrays.fill(dp, 0);
