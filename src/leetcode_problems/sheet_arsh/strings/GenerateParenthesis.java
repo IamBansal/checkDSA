@@ -26,6 +26,7 @@ public class GenerateParenthesis {
         if (close < open) backtrack(list, str + ")", open, close + 1, max);
     }
 
+
     public static void main(String[] args) {
         System.out.println(generateParenthesis(3));
         System.out.println(generateParenthesis(1));
