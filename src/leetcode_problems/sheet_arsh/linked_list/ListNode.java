@@ -17,11 +17,11 @@ public class ListNode {
     }
 
     public static void printLinkedList(ListNode result){
-        while (result != null) {
+        do {
             System.out.print(result.val + "-> ");
             result = result.next;
-        }
-
+        } while (result.next != null);
+        System.out.print(result.val);
         System.out.println();
     }
 }
