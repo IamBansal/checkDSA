@@ -17,6 +17,7 @@ public class ListNode {
     }
 
     public static void printLinkedList(ListNode result){
+        if (result == null) return;
         do {
             System.out.print(result.val + "-> ");
             result = result.next;

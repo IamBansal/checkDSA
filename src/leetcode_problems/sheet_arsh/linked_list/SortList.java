@@ -1,57 +1,53 @@
 package leetcode_problems.sheet_arsh.linked_list;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class SortList {
 
     /*
-    GFG Problem
-
-    Given a linked list of 0s, 1s and 2s, sort it.
-    Given a linked list of N nodes where nodes can contain values 0s, 1s, and 2s only.
-    The task is to segregate 0s, 1s, and 2s linked list such that all zeros segregate to head side,
-    2s at the end of the linked list, and 1s in the mid of 0s and 2s.
+    148. Sort List
+    Given the head of a linked list, return the list after sorting it in ascending order.
      */
 
-    public static ListNode segregate(ListNode head) {
+    //This solution may take some time.
+    public static ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) return head;
 
-        ListNode temp = head;
-        int counter = 0;
-        while (temp != null){
-            counter++;
-            temp = temp.next;
-        }
-        temp = head;
+        ListNode prev = null, slow = head, fast = head;
 
-        int[] array = new int[counter];
-
-        int i = 0;
-        while (i < counter){
-            array[i] = temp.val;
-            temp = temp.next;
-            i++;
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        Arrays.sort(array);
-        temp = head;
-        for (int num: array){
-            temp.val = num;
-            temp = temp.next;
+        prev.next = null;
+
+        ListNode l1 = sortList(head);
+        ListNode l2 = sortList(slow);
+
+        return merge(l1, l2);
+    }
+
+    private static ListNode merge(ListNode l1, ListNode l2) {
+        ListNode l = new ListNode(0), p = l;
+
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                p.next = l1;
+                l1 = l1.next;
+            } else {
+                p.next = l2;
+                l2 = l2.next;
+            }
+            p = p.next;
         }
 
-        return head;
+        if (l1 != null) p.next = l1;
+        if (l2 != null) p.next = l2;
+
+        return l.next;
     }
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(0, new ListNode(2, new ListNode(0, new ListNode(1)))))));
-        ListNode result = segregate(head);
-
-        while (result != null) {
-            System.out.print(result.val + "-> ");
-            result = result.next;
-        }
-
-        System.out.println();
+        ListNode.printLinkedList(sortList(new ListNode(4, new ListNode(2, new ListNode(1, new ListNode(3))))));
     }
 }
