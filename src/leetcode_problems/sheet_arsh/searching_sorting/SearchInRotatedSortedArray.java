@@ -4,6 +4,7 @@ public class SearchInRotatedSortedArray {
 
     /*
     33. Search in Rotated Sorted Array
+    
     There is an integer array nums sorted in ascending order (with distinct values).
     Prior to being passed to your function, nums is possibly rotated at an unknown
     pivot index k (1 <= k < nums.length) such that the resulting array is
@@ -33,5 +34,6 @@ public class SearchInRotatedSortedArray {
     public static void main(String[] args) {
         System.out.println(search(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
         System.out.println(search(new int[]{4, 5, 6, 7, 0, 1, 2}, 3));
+        System.out.println(search(new int[]{4, 5, 6, 7, 0, 1, 2}, 7));
     }
 }
